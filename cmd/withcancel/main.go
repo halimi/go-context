@@ -7,6 +7,13 @@ import (
 )
 
 func processData(ctx context.Context, dataCh chan int) {
+	deadline, ok := ctx.Deadline()
+	if ok {
+		fmt.Printf("we have a deadline: %s\n", deadline)
+	} else {
+		fmt.Println("no deadline!")
+	}
+
 	for {
 		select {
 		case <-ctx.Done():
